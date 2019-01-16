@@ -36,10 +36,6 @@ class App extends Component {
       .then(() => this.setState({ isLoading: false}));
   }
 
-  sortData = (column) => {
-    console.log(column);
-  }
-
   showUserProfile = (userData) => {
     this.setState({userProfile: userData})
   }
@@ -50,11 +46,7 @@ class App extends Component {
       data
     } = this.state
 
-    // let filteredData = data;
-
-    console.log(data);
     return (
-
       <div className="App">
         {isLoading && <Spinner />}
 
@@ -69,31 +61,7 @@ class App extends Component {
             <button>Найти</button>
           </div>
         </div>
-        
-        <div className="Table-container">
-          <table>
-            <thead>
-              <tr>
-                <th onClick={() => {this.sortData('id')}}>id</th>
-                <th onClick={() => {this.sortData('firstName')}}>firstName</th>
-                <th onClick={() => {this.sortData('lastName')}}>lastName</th>
-                <th onClick={() => {this.sortData('email')}}>email</th>
-                <th onClick={() => {this.sortData('phone')}}>phone</th>
-              </tr>
-            </thead>
-            <tbody>
-            {data.map(userData => (
-              <tr onClick={() => {this.showUserProfile(userData)}}>
-                <td>{userData.id}</td>
-                <td>{userData.firstName}</td>
-                <td>{userData.lastName}</td>
-                <td>{userData.email}</td>
-                <td>{userData.phone}</td>
-              </tr>
-            ))}
-            </tbody>
-          </table>
-        </div>
+        {data.length !== 0&& <Table data={data}/>}
       </div>
     );
   }

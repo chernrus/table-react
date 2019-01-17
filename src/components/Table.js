@@ -54,7 +54,6 @@ class Table extends Component {
   }
 
   changePage(page) {
-    console.log(page);
     this.setState({ page, offset: totalElementsOnPage*(page-1) });
   }
 

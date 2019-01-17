@@ -18,6 +18,11 @@ button:hover {
   margin-left: 0;
 }
 
+.wrong-data-btn {
+  background-color: #ff6666;
+  color: #fff;
+}
+
 .Error-message {
   font-size: 18px;
   font-weight: bold;

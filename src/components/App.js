@@ -13,7 +13,7 @@ class App extends Component {
 
   loadData = (type) => {
 
-    this.setState({ isLoading: true})
+    this.setState({ isLoading: true, data: []})
 
     const smallDataUrl = 'http://www.filltext.com/?rows=32&id={number|1000}&firstName={firstName}&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}',
       bigDataUrl = 'http://www.filltext.com/?rows=1000&id={number|1000}&firstName={firstName}&delay=3&lastName={lastName}&email={email}&phone={phone|(xxx)xxx-xx-xx}&address={addressObject}&description={lorem|32}';
@@ -29,11 +29,18 @@ class App extends Component {
 
     fetch(url)
       .then(response => {
-          return response.json();
+        return response.json();
       })
-      .then(data => this.setState({data: data}))
-      .catch(error => this.setState({ error: error}))
-      .then(() => this.setState({ isLoading: false}));
+      .then(data => this.setState({
+        data: data,
+        error: null,
+        isLoading: false
+      }))
+      .catch(error => this.setState({
+        data: [],
+        error: error.message,
+        isLoading: false
+      }));
   }
 
   showUserProfile = (userData) => {
@@ -42,26 +49,21 @@ class App extends Component {
 
   render() {
     const {
+      data,
       isLoading,
-      data
+      error
     } = this.state
-
+    console.log(error);
+    console.log(data);
     return (
       <div className="App">
         {isLoading && <Spinner />}
-
-        <div className="Setting-panel">
-          <div className="Setting-panel__mode-coice">
-            <p>Выбор объема данных</p>
-            <button onClick={() => {this.loadData('small-data-value')}}>Малый объем данных</button>
-            <button onClick={() => {this.loadData('big-data-value')}}>Большой объем данных</button>
-          </div>
-          <div className="Setting-panel__filter-panel">
-            <input type="text" placeholder="Введите подстроку"/>
-            <button>Найти</button>
-          </div>
+        <div className="Load-data-panel">
+          <span>Выбор объема данных</span>
+          <button className="Load-data-panel__button small-data-btn" onClick={() => {this.loadData('small-data-value')}}>Малый объем данных</button>
+          <button className="Load-data-panel__button big-data-btn" onClick={() => {this.loadData('big-data-value')}}>Большой объем данных</button>
         </div>
-        {data.length !== 0&& <Table data={data}/>}
+        {data.length !== 0 && <Table data={data}/>}
       </div>
     );
   }

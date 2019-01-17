@@ -10,6 +10,10 @@ button {
   margin-left: 10px;
 }
 
+button:hover {
+  background-color: #F0F0F0;
+}
+
 .small-data-btn {
   margin-left: 0;
 }

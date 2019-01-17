@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import '../App.css';
 import Spinner from './Spinner';
+import ErrorMessage from './ErrorMessage';
 import Table from './Table';
 
 class App extends Component {
+
   state = {
     data: [],
     error: null,
@@ -55,8 +57,10 @@ class App extends Component {
     } = this.state
     console.log(error);
     console.log(data);
+    
     return (
-      <div className="App">
+      <div className="App" >
+        {error && <ErrorMessage error={error}/>}
         {isLoading && <Spinner />}
         <div className="Load-data-panel">
           <span>Выбор объема данных</span>

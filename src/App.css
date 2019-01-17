@@ -2,10 +2,43 @@ span {
   display: block;
 }
 
+button {
+  background-color: #DCDCDC;
+  border: none;
+  height: 40px;
+  min-width: 100px;
+  margin-left: 10px;
+}
+
+.small-data-btn {
+  margin-left: 0;
+}
+
+.Error-message {
+  font-size: 18px;
+  font-weight: bold;
+  color: red;
+}
+
+.Load-data-panel,
+.Error-message,
+.Table-container
+ {
+  margin: 10px;
+}
+
+.Filter-panel {
+  margin-bottom: 10px;
+}
+
+.Table-container {
+  width: 80%;
+}
+
 .Spinner__circle {
   border: 16px solid #f3f3f3;
   border-radius: 50%;
-  border-top: 16px solid #3498db;
+  border-top: 16px solid #A9A9A9;
   width: 120px;
   height: 120px;
   -webkit-animation: spin 2s linear infinite; /* Safari */
@@ -46,6 +79,14 @@ table, th, td {
   border: 1px solid black;
 }
 
+td {
+  padding: 5px;
+}
+
+th:hover {
+  background-color: #A9A9A9;
+}
+
 .Table-container__row {
   cursor: pointer;
 }
@@ -81,4 +122,9 @@ table, th, td {
 
 .pagination li:hover:not(.active) {
   background-color: #ddd;
+}
+
+.User-profile {
+  border: 1px solid;
+  padding: 10px;
 }
